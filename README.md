@@ -181,3 +181,8 @@ School Management System/
 For feedback or collaboration:
 
 * 📧 Email: `sribalakumarr@gmail.com`
+
+---
+
+This project is licensed under the [MIT License](LICENSE).
+
