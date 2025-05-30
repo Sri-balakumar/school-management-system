@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Calendar - SRI Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f4f7fa;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+
+        .contact-info span {
+            margin-right: 15px;
+        }
+
+        .social-icons a {
+            color: #e0e7ff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #f39c12;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            font-style: italic;
+            color: #e0e7ff;
+        }
+
+        .date-time {
+            font-size: 14px;
+            color: #e0e7ff;
+            font-family: 'Montserrat', sans-serif;
+            margin-right: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 25px;
+            display: block;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #f39c12;
+        }
+
+        nav ul li a.active {
+            color: #f39c12;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Calendar section */
+        .calendar-section {
+            padding: 80px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calendar-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-controls button {
+            background: #f39c12;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.3s ease;
+        }
+
+        .calendar-controls button:hover {
+            background: #e67e22;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            background: #f4f7fa;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-grid div {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .calendar-grid .day-name {
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
+        .calendar-grid .day {
+            background: #fff;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .calendar-grid .day:hover {
+            background: #e0e7ff;
+        }
+
+        .calendar-grid .event {
+            background: #f39c12;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .calendar-grid .today {
+            border: 2px solid #1e3c72;
+            font-weight: 700;
+        }
+
+        .events-holidays {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .events-list, .holidays-list {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .events-list:hover, .holidays-list:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .events-list h3, .holidays-list h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .event-item, .holiday-item {
+            margin-bottom: 15px;
+        }
+
+        .event-item h4, .holiday-item h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .event-item p, .holiday-item p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .pagination button {
+            background: #f39c12;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background: #e67e22;
+        }
+
+        .pagination button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            display: block;
+            background: #f39c12;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .back-btn:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 80px 5%;
+            background: #1e3c72;
+            color: #fff;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info-section h3,
+        .quick-links h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #f39c12;
+        }
+
+        .contact-text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quick-links ul {
+            list-style: none;
+        }
+
+        .quick-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links ul li a {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links ul li a:hover {
+            color: #f39c12;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: #e0e7ff;
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer p {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .events-holidays {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .calendar-grid div {
+                padding: 8px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .date-time {
+                margin: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 10px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 28px;
+            }
+
+            .calendar-grid div {
+                padding: 6px;
+                font-size: 10px;
+            }
+
+            .event-item h4, .holiday-item h4 {
+                font-size: 14px;
+            }
+
+            .event-item p, .holiday-item p {
+                font-size: 12px;
+            }
+
+            .back-btn {
+                padding: 10px 25px;
+            }
+
+            .pagination button {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> info@schoolname.com</span>
+                <span><i class="fas fa-phone"></i> +91 1234567890</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/Logo.jpg" alt="School Logo">
+                <div class="logo-text">
+                    <h1>SRI ACADEMY</h1>
+                    <p>Empowering minds, Shaping futures</p>
+                </div>
+            </div>
+            <div class="date-time" id="date-time"></div>
+            <nav>
+                <ul>
+                    <li><a href="School_management.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Admission/admission.html">Admission</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="calendar-section">
+        <h2 class="section-title">Academic Calendar</h2>
+        <p class="section-subtitle">Stay updated with important school events and holidays for 2025</p>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <h2 id="month-year">May 2025</h2>
+                <div class="calendar-controls">
+                    <button id="prev-month"><i class="fas fa-chevron-left"></i> Previous</button>
+                    <button id="next-month">Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+                <!-- Calendar will be populated by JavaScript -->
+            </div>
+            <a href="/School_management.html" class="back-btn"><i class="fas fa-home"></i> Back to Home</a>
+            <div class="events-holidays">
+                <div class="events-list">
+                    <h3>Upcoming School Events</h3>
+                    <div id="events-container">
+                        <!-- Events will be populated by JavaScript -->
+                    </div>
+                    <div class="pagination">
+                        <button id="prev-events" disabled>Previous</button>
+                        <button id="next-events">Next</button>
+                    </div>
+                    <div class="page-indicator" id="events-page"></div>
+                </div>
+                <div class="holidays-list">
+                    <h3>Government Holidays</h3>
+                    <div id="holidays-container">
+                        <!-- Holidays will be populated by JavaScript -->
+                    </div>
+                    <div class="pagination">
+                        <button id="prev-holidays" disabled>Previous</button>
+                        <button id="next-holidays">Next</button>
+                    </div>
+                    <div class="page-indicator" id="holidays-page"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We're always happy to hear from parents, students, and visitors</p>
+        <div class="contact-container">
+            <div class="contact-info-section">
+                <h3>Get In Touch</h3>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-text">123 Education Street, School District, Coimbatore - 641001, Tamil Nadu, India</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-text">+91 1234567890, +91 9876543210</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-text">info@schoolname.com<br>admissions@schoolname.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div class="contact-text">
+                        Monday - Friday: 8:30 AM - 4:30 PM<br>
+                        Saturday: 8:30 AM - 12:30 PM<br>
+                        Sunday: Closed
+                    </div>
+                </div>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="School_management.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Admission/admission.html">Admission</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="calendar.html">Academic Calendar</a></li>
+                    <li><a href="Gallery/gallery.html">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 SRI Academy. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> by Sri Balakumar</p>
+    </footer>
+
+    <script>
+        // Calendar JavaScript
+        const calendarGrid = document.getElementById('calendar-grid');
+        const monthYear = document.getElementById('month-year');
+        const prevMonthBtn = document.getElementById('prev-month');
+        const nextMonthBtn = document.getElementById('next-month');
+        const dateTimeDisplay = document.getElementById('date-time');
+        const eventsContainer = document.getElementById('events-container');
+        const holidaysContainer = document.getElementById('holidays-container');
+        const prevEventsBtn = document.getElementById('prev-events');
+        const nextEventsBtn = document.getElementById('next-events');
+        const prevHolidaysBtn = document.getElementById('prev-holidays');
+        const nextHolidaysBtn = document.getElementById('next-holidays');
+        const eventsPageIndicator = document.getElementById('events-page');
+        const holidaysPageIndicator = document.getElementById('holidays-page');
+
+        let currentDate = new Date(2025, 4, 1); // Start at May 2025
+        const today = new Date();
+        let eventsCurrentPage = 1;
+        let holidaysCurrentPage = 1;
+        const itemsPerPage = 4;
+
+        // Full list of school events for 2025
+        const events = [
+            { date: new Date(2025, 0, 15), title: 'School Reopens', description: 'Start of the new academic year' },
+            { date: new Date(2025, 2, 10), title: 'First Term Exams', description: 'Examinations for all grades' },
+            { date: new Date(2025, 3, 15), title: 'Spring Break', description: 'School closed for one week' },
+            { date: new Date(2025, 5, 10), title: 'Parent-Teacher Meeting', description: 'Discuss student progress' },
+            { date: new Date(2025, 5, 15), title: 'Summer Break Begins', description: 'School closed until August' },
+            { date: new Date(2025, 7, 1), title: 'School Reopens', description: 'Start of second term' },
+            { date: new Date(2025, 7, 20), title: 'Annual Sports Day', description: 'Inter-house competitions' },
+            { date: new Date(2025, 8, 5), title: 'Teacher’s Day', description: 'Celebrations and student performances' },
+            { date: new Date(2025, 8, 15), title: 'Mid-Term Exams', description: 'Half-yearly examinations' },
+            { date: new Date(2025, 9, 10), title: 'Annual Day', description: 'Cultural performances and awards' },
+            { date: new Date(2025, 10, 15), title: 'Winter Break Begins', description: 'School closed until January' },
+            { date: new Date(2025, 11, 20), title: 'Science Exhibition', description: 'Student projects showcase' }
+        ];
+
+        // Full list of major Indian government holidays for 2025
+        const holidays = [
+            { date: new Date(2025, 0, 26), title: 'Republic Day', description: 'National holiday' },
+            { date: new Date(2025, 1, 26), title: 'Maha Shivaratri', description: 'Festival holiday' },
+            { date: new Date(2025, 2, 13), title: 'Holi', description: 'Festival holiday' },
+            { date: new Date(2025, 3, 14), title: 'Ram Navami', description: 'Festival holiday' },
+            { date: new Date(2025, 4, 1), title: 'Labour Day', description: 'International workers’ day' },
+            { date: new Date(2025, 7, 15), title: 'Independence Day', description: 'National holiday' },
+            { date: new Date(2025, 8, 5), title: 'Raksha Bandhan', description: 'Festival holiday' },
+            { date: new Date(2025, 9, 2), title: 'Gandhi Jayanti', description: 'National holiday' },
+            { date: new Date(2025, 9, 20), title: 'Diwali', description: 'Festival holiday' },
+            { date: new Date(2025, 11, 25), title: 'Christmas', description: 'Festival holiday' }
+        ];
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const firstDay = new Date(year, month, 1).getDay();
+            const lastDate = new Date(year, month + 1, 0).getDate();
+
+            // Update month and year display
+            monthYear.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
+            // Clear previous calendar
+            calendarGrid.innerHTML = '';
+
+            // Add day names
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            days.forEach(day => {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day-name';
+                dayDiv.textContent = day;
+                calendarGrid.appendChild(dayDiv);
+            });
+
+            // Add empty slots for days before the first day
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDiv = document.createElement('div');
+                calendarGrid.appendChild(emptyDiv);
+            }
+
+            // Add days
+            for (let day = 1; day <= lastDate; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day';
+                dayDiv.textContent = day;
+
+                // Highlight today
+                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                    dayDiv.classList.add('today');
+                }
+
+                // Highlight events and holidays
+                const event = events.find(e => e.date.getFullYear() === year && e.date.getMonth() === month && e.date.getDate() === day);
+                const holiday = holidays.find(h => h.date.getFullYear() === year && h.date.getMonth() === month && h.date.getDate() === day);
+                if (event || holiday) {
+                    dayDiv.classList.add('event');
+                    dayDiv.title = event ? event.title : holiday.title;
+                }
+
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+
+        function renderEventsPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageEvents = events.slice(start, end);
+
+            eventsContainer.innerHTML = '';
+            pageEvents.forEach(event => {
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'event-item';
+                eventDiv.innerHTML = `
+                    <h4>${event.title}</h4>
+                    <p>${event.date.toLocaleDateString('en-IN', { month: 'long', day: 'numeric', year: 'numeric' })} - ${event.description}</p>
+                `;
+                eventsContainer.appendChild(eventDiv);
+            });
+
+            const totalPages = Math.ceil(events.length / itemsPerPage);
+            eventsPageIndicator.textContent = `Page ${page} of ${totalPages}`;
+            prevEventsBtn.disabled = page === 1;
+            nextEventsBtn.disabled = page === totalPages;
+        }
+
+        function renderHolidaysPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageHolidays = holidays.slice(start, end);
+
+            holidaysContainer.innerHTML = '';
+            pageHolidays.forEach(holiday => {
+                const holidayDiv = document.createElement('div');
+                holidayDiv.className = 'holiday-item';
+                holidayDiv.innerHTML = `
+                    <h4>${holiday.title}</h4>
+                    <p>${holiday.date.toLocaleDateString('en-IN', { month: 'long', day: 'numeric', year: 'numeric' })} - ${holiday.description}</p>
+                `;
+                holidaysContainer.appendChild(holidayDiv);
+            });
+
+            const totalPages = Math.ceil(holidays.length / itemsPerPage);
+            holidaysPageIndicator.textContent = `Page ${page} of ${totalPages}`;
+            prevHolidaysBtn.disabled = page === 1;
+            nextHolidaysBtn.disabled = page === totalPages;
+        }
+
+        // Update current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Asia/Kolkata'
+            };
+            dateTimeDisplay.textContent = now.toLocaleString('en-IN', options);
+        }
+
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        prevEventsBtn.addEventListener('click', () => {
+            if (eventsCurrentPage > 1) {
+                eventsCurrentPage--;
+                renderEventsPage(eventsCurrentPage);
+            }
+        });
+
+        nextEventsBtn.addEventListener('click', () => {
+            if (eventsCurrentPage < Math.ceil(events.length / itemsPerPage)) {
+                eventsCurrentPage++;
+                renderEventsPage(eventsCurrentPage);
+            }
+        });
+
+        prevHolidaysBtn.addEventListener('click', () => {
+            if (holidaysCurrentPage > 1) {
+                holidaysCurrentPage--;
+                renderHolidaysPage(holidaysCurrentPage);
+            }
+        });
+
+        nextHolidaysBtn.addEventListener('click', () => {
+            if (holidaysCurrentPage < Math.ceil(holidays.length / itemsPerPage)) {
+                holidaysCurrentPage++;
+                renderHolidaysPage(holidaysCurrentPage);
+            }
+        });
+
+        // Initial render
+        renderCalendar();
+        renderEventsPage(eventsCurrentPage);
+        renderHolidaysPage(holidaysCurrentPage);
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Update every minute
+    </script>
+</body>
+</html>

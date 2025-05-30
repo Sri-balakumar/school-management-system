@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - SRI Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f4f7fa;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+
+        .contact-info span {
+            margin-right: 15px;
+        }
+
+        .social-icons a {
+            color: #e0e7ff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            font-style: italic;
+            color: #e0e7ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 25px;
+            display: block;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a.active {
+            color: #f39c12;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Gallery section */
+        .gallery-section {
+            padding: 80px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .gallery-caption h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .gallery-caption p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background: #f39c12;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+
+        .pagination button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 80px 5%;
+            background: #1e3c72;
+            color: #fff;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info-section h3,
+        .quick-links h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #f39c12;
+        }
+
+        .contact-text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quick-links ul {
+            list-style: none;
+        }
+
+        .quick-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links ul li a {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: #e0e7ff;
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer p {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 10px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 28px;
+            }
+
+            .gallery-item img {
+                height: 150px;
+            }
+
+            .gallery-caption h4 {
+                font-size: 16px;
+            }
+
+            .gallery-caption p {
+                font-size: 12px;
+            }
+
+            .pagination button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> info@schoolname.com</span>
+                <span><i class="fas fa-phone"></i> +91 1234567890</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/Logo.jpg" alt="School Logo">
+                <div class="logo-text">
+                    <h1>SRI ACADEMY</h1>
+                    <p>Empowering minds, Shaping futures</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="School_management.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Admission/admission.html">Admission</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gallery-section">
+        <h2 class="section-title">Our Gallery</h2>
+        <p class="section-subtitle">Relive the vibrant moments of our school events and celebrations</p>
+        <div class="gallery-container">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images will be populated by JavaScript -->
+            </div>
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <button id="next-page" disabled>Next</button>
+            </div>
+            <div class="page-indicator" id="gallery-page">Page 1 of 1</div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We're always happy to hear from parents, students, and visitors</p>
+        <div class="contact-container">
+            <div class="contact-info-section">
+                <h3>Get In Touch</h3>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-text">123 Education Street, School District, Coimbatore - 641001, Tamil Nadu, India</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-text">+91 1234567890, +91 9876543210</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-text">info@schoolname.com<br>admissions@schoolname.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div class="contact-text">
+                        Monday - Friday: 8:30 AM - 4:30 PM<br>
+                        Saturday: 8:30 AM - 12:30 PM<br>
+                        Sunday: Closed
+                    </div>
+                </div>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/School_management.html">Home</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/Admission/admission.html">Admission</a></li>
+                    <li><a href="/School_management.html#facilities">Facilities</a></li>
+                    <li><a href="/calendar.html">Academic Calendar</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="/Gallery/gallery.html">Gallery</a></li>
+                    <li><a href="/School_management.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 SRI Academy. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> by Sri Balakumar</p>
+    </footer>
+
+    <script>
+        // Gallery JavaScript
+        const galleryGrid = document.getElementById('gallery-grid');
+        const prevPageBtn = document.getElementById('prev-page');
+        const nextPageBtn = document.getElementById('next-page');
+        const pageIndicator = document.getElementById('gallery-page');
+
+        let currentPage = 1;
+        const itemsPerPage = 5;
+
+        // Gallery images data
+        const galleryImages = [
+            {
+                src: '/Gallery/Annual-Day-pic.jpg',
+                title: 'Annual Day',
+                description: 'Students performing vibrant cultural dances on October 10, 2025.'
+            },
+            {
+                src: '/Gallery/Sports.jpg',
+                title: 'Sports Day',
+                description: 'Exciting relay races during our Annual Sports Day on August 20, 2025.'
+            },
+            {
+                src: '/Gallery/Exhibition.jpeg',
+                title: 'Science Exhibition',
+                description: 'Innovative student projects showcased on December 20, 2025.'
+            },
+            {
+                src: '/Gallery/Teachers day.webp',
+                title: 'Teacher’s Day',
+                description: 'Students honoring teachers with performances on September 5, 2025.'
+            },
+            {
+                src: '/Gallery/Art.jpeg',
+                title: 'Art & Craft Exhibition',
+                description: 'Creative student artwork displayed on May 5, 2025.'
+            }
+        ];
+
+        function renderGalleryPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageImages = galleryImages.slice(start, end);
+
+            galleryGrid.innerHTML = '';
+            pageImages.forEach(image => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'gallery-item';
+                itemDiv.innerHTML = `
+                    <img src="${image.src}" alt="${image.title}">
+                    <div class="gallery-caption">
+                        <h4>${image.title}</h4>
+                        <p>${image.description}</p>
+                    </div>
+                `;
+                galleryGrid.appendChild(itemDiv);
+            });
+
+            const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
+            pageIndicator.textContent = `Page ${page} of ${totalPages}`;
+            prevPageBtn.disabled = page === 1;
+            nextPageBtn.disabled = page === totalPages;
+        }
+
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderGalleryPage(currentPage);
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            if (currentPage < Math.ceil(galleryImages.length / itemsPerPage)) {
+                currentPage++;
+                renderGalleryPage(currentPage);
+            }
+        });
+
+        // Initial render
+        renderGalleryPage(currentPage);
+    </script>
+</body>
+</html>

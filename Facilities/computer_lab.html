@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Lab - SRI Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f4f7fa;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+
+        .contact-info span {
+            margin-right: 15px;
+        }
+
+        .social-icons a {
+            color: #e0e7ff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #f39c12;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            font-style: italic;
+            color: #e0e7ff;
+        }
+
+        /* Navigation styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 25px;
+            display: block;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #f39c12;
+        }
+
+        /* Main content */
+        .lab-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .lab-image,
+        .lab-content {
+            flex: 1;
+        }
+
+        .lab-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .lab-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .lab-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .lab-content p {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .lab-content ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .lab-content ul li {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .lab-content ul li:before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #f39c12;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #f39c12;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: #e0e7ff;
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer p {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .lab-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .lab-image img {
+                height: 300px;
+            }
+
+            .lab-content h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 10px;
+            }
+
+            .lab-content h2 {
+                font-size: 28px;
+            }
+
+            .lab-image img {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lab-content h2 {
+                font-size: 24px;
+            }
+
+            .lab-content p,
+            .lab-content ul li {
+                font-size: 14px;
+            }
+
+            .back-btn {
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> info@schoolname.com</span>
+                <span><i class="fas fa-phone"></i> +91 1234567890</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="Logo.jpg" alt="School Logo">
+                <div class="logo-text">
+                    <h1>SRI ACADEMY</h1>
+                    <p>Empowering minds, Shaping futures</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="digital_classrooms.html">Digital Classrooms</a></li>
+                    <li><a href="science labs.html">Science Labs</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="sports_facilities.html">Sports Facilities</a></li>
+                    <li><a href="auditorium.html">Auditorium</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="lab-section">
+        <div class="lab-image">
+            <img src="/images/Computer Lab.jpg" alt="Computer Lab">
+        </div>
+        <div class="lab-content">
+            <h2>Computer Lab</h2>
+            <p>At SRI Academy, our Computer Lab is a hub for technological innovation and digital learning. Equipped with the latest hardware and software, the lab provides students with a dynamic environment to develop essential computing skills, from coding to data analysis, preparing them for a tech-driven future.</p>
+            <ul>
+                <li>High-performance computers with the latest operating systems and software.</li>
+                <li>High-speed internet for research and cloud-based learning.</li>
+                <li>Dedicated workstations for programming, graphic design, and multimedia projects.</li>
+                <li>Secure network environment with advanced cybersecurity measures.</li>
+                <li>Regular workshops on emerging technologies like AI and robotics.</li>
+            </ul>
+            <a href="/School_management.html" class="back-btn">Back to Home</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 School Name. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> by Sri Balakumar</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SRI Academy - Excellence in Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f4f7fa;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+
+        .contact-info span {
+            margin-right: 15px;
+        }
+
+        .social-icons a {
+            color: #e0e7ff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #f39c12;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            font-style: italic;
+            color: #e0e7ff;
+        }
+
+        /* Navigation styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 25px;
+            display: block;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #f39c12;
+        }
+
+        /* Hero section with blurred background */
+        .hero {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/about_back.jpeg') center/cover fixed;
+            filter: blur(8px);
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About section */
+        .about {
+            padding: 80px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Vision & Mission section */
+        .vision-mission {
+            padding: 80px 5%;
+            background: #f4f7fa;
+            text-align: center;
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vm-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 40px 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .vm-icon {
+            font-size: 50px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .vm-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+
+        .vm-desc {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        /* Values section */
+        .values {
+            padding: 80px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            padding: 30px;
+            border-radius: 10px;
+            background: #f4f7fa;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            background: #e0e7ff;
+            transform: translateY(-5px);
+        }
+
+        .value-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1e3c72;
+        }
+
+        .value-desc {
+            font-size: 15px;
+            color: #7f8c8d;
+        }
+
+        /* Leadership section */
+        .leadership {
+            padding: 80px 5%;
+            background: #f4f7fa;
+            text-align: center;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .leader-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .leader-info {
+            padding: 20px;
+        }
+
+        .leader-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .leader-role {
+            font-size: 16px;
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        .leader-desc {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 80px 5%;
+            background: #1e3c72;
+            color: #fff;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info-section h3,
+        .quick-links h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #f39c12;
+        }
+
+        .contact-text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quick-links ul {
+            list-style: none;
+        }
+
+        .quick-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links ul li a {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links ul li a:hover {
+            color: #f39c12;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: #e0e7ff;
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer p {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .vm-grid,
+            .values-grid,
+            .leadership-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 10px;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .vm-card,
+            .value-card,
+            .leader-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> info@schoolname.com</span>
+                <span><i class="fas fa-phone"></i> +91 1234567890</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/Logo.jpg" alt="School Logo">
+                <div class="logo-text">
+                    <h1>SRI ACADEMY</h1>
+                    <p>Empowering minds, Shaping futures</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="School_management.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="Admission/admission.html">Admission</a></li>
+                    <li><a href="/School_management.html#facilities">Facilities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>About SRI Academy</h2>
+            <p>Discover our legacy of excellence in education and commitment to holistic development</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-subtitle">A journey of nurturing young minds since our founding</p>
+        <div class="about-content">
+            <p>SRI Academy was established in 1985 with a vision to provide quality education that blends traditional values with modern teaching methodologies. Over the past four decades, we have grown into a leading educational institution in Coimbatore, Tamil Nadu, known for our commitment to academic excellence and holistic development.</p>
+            <p>Our campus, nestled in the heart of the city, is a vibrant community where students, teachers, and parents collaborate to create a nurturing environment. We believe in empowering our students to become confident, compassionate, and capable leaders of tomorrow.</p>
+            <p>From humble beginnings with a single classroom to a sprawling campus with state-of-the-art facilities, SRI Academy continues to innovate and inspire, staying true to our core values of integrity, respect, and excellence.</p>
+        </div>
+    </section>
+
+    <section class="vision-mission">
+        <h2 class="section-title">Vision & Mission</h2>
+        <p class="section-subtitle">Guiding principles that shape our educational philosophy</p>
+        <div class="vm-grid">
+            <div class="vm-card">
+                <div class="vm-icon"><i class="fas fa-eye"></i></div>
+                <h3 class="vm-title">Our Vision</h3>
+                <p class="vm-desc">To be a global leader in education, fostering innovation, critical thinking, and ethical leadership in every student.</p>
+            </div>
+            <div class="vm-card">
+                <div class="vm-icon"><i class="fas fa-bullseye"></i></div>
+                <h3 class="vm-title">Our Mission</h3>
+                <p class="vm-desc">To provide a holistic education that empowers students to excel academically, develop strong character, and contribute meaningfully to society.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <h2 class="section-title">Our Core Values</h2>
+        <p class="section-subtitle">The foundation of our educational approach</p>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3 class="value-title">Integrity</h3>
+                <p class="value-desc">Upholding honesty and ethical behavior in all actions.</p>
+            </div>
+            <div class="value-card">
+                <h3 class="value-title">Respect</h3>
+                <p class="value-desc">Fostering mutual respect for diverse perspectives and cultures.</p>
+            </div>
+            <div class="value-card">
+                <h3 class="value-title">Excellence</h3>
+                <p class="value-desc">Striving for the highest standards in education and personal growth.</p>
+            </div>
+            <div class="value-card">
+                <h3 class="value-title">Compassion</h3>
+                <p class="value-desc">Encouraging empathy and care for the community and environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="leadership">
+        <h2 class="section-title">Our Leadership</h2>
+        <p class="section-subtitle">Meet the dedicated team guiding our institution</p>
+        <div class="leadership-grid">
+            <div class="leader-card">
+                <img src="/api/placeholder/300/200" alt="Principal" class="leader-img">
+                <div class="leader-info">
+                    <h3 class="leader-name">Dr. Anitha Sharma</h3>
+                    <p class="leader-role">Principal</p>
+                    <p class="leader-desc">With over 25 years in education, Dr. Sharma leads with a vision for academic excellence and innovation.</p>
+                </div>
+            </div>
+            <div class="leader-card">
+                <img src="/api/placeholder/300/200" alt="Vice Principal" class="leader-img">
+                <div class="leader-info">
+                    <h3 class="leader-name">Prof. Rajesh Kumar</h3>
+                    <p class="leader-role">Vice Principal</p>
+                    <p class="leader-desc">An expert in curriculum development, Prof. Kumar ensures a balanced educational experience.</p>
+                </div>
+            </div>
+            <div class="leader-card">
+                <img src="/api/placeholder/300/200" alt="Head of Academics" class="leader-img">
+                <div class="leader-info">
+                    <h3 class="leader-name">Ms. Priya Menon</h3>
+                    <p class="leader-role">Head of Academics</p>
+                    <p class="leader-desc">Ms. Menon oversees academic programs, fostering a culture of continuous learning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We're always happy to hear from parents, students, and visitors</p>
+        <div class="contact-container">
+            <div class="contact-info-section">
+                <h3>Get In Touch</h3>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-text">123 Education Street, School District, Coimbatore - 641001, Tamil Nadu, India</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-text">+91 1234567890, +91 9876543210</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-text">info@schoolname.com<br>admissions@schoolname.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div class="contact-text">
+                        Monday - Friday: 8:30 AM - 4:30 PM<br>
+                        Saturday: 8:30 AM - 12:30 PM<br>
+                        Sunday: Closed
+                    </div>
+                </div>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="School_management.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Admission/admission.html">Admission</a></li>
+                    <li><a href="/School_management.html#facilities">Facilities</a></li>
+                    <li><a href="calendar.html">Academic Calendar</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="Gallery/gallery.html">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 SRI Academy. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> by Sri Balakumar</p>
+    </footer>
+</body>
+</html>
