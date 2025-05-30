@@ -121,7 +121,7 @@ School Management System/
 1. Clone or download the repository:
 
    ```bash
-   git clone https://github.com/yourusername/sri-academy-website.git
+   git clone https://github.com/Sri-balakumar/school-management-system.git
    ```
 
 2. Open `School_management.html` in any browser to start exploring.
