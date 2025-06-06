@@ -5,7 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, se
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCslxNVpJDvjanznQ0M8EIAPevE9tdWPUQ",
+  apiKey: "",
   authDomain: "school-application-form-a7bdd.firebaseapp.com",
   projectId: "school-application-form-a7bdd",
   storageBucket: "school-application-form-a7bdd.appspot.com",
